@@ -1,0 +1,23 @@
+{
+  "name": "advancedfileupload",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "blueimp-file-upload": "^10.31.0",
+    "dicer": "^0.3.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-formidable": "^1.2.0",
+    "formidable": "^1.2.2",
+    "fs": "0.0.1-security",
+    "mime-types": "^2.1.30",
+    "multer": "^1.4.2",
+    "path": "^0.12.7"
+  }
+}

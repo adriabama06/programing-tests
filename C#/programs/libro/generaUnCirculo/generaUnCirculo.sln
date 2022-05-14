@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "generaUnCirculo", "generaUnCirculo\generaUnCirculo.csproj", "{B6391151-DAC0-41B8-A83D-1F96A18273BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6391151-DAC0-41B8-A83D-1F96A18273BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6391151-DAC0-41B8-A83D-1F96A18273BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6391151-DAC0-41B8-A83D-1F96A18273BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6391151-DAC0-41B8-A83D-1F96A18273BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00DC07D9-4C2E-4310-A70E-4C360BE70083}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+menu_de_juegos:
+  slot: 5
+  material: "book"
+  displayName: "&e&lSelector de juegos"
+  description:
+    - "&7Abre el menu de la lista de juegos"

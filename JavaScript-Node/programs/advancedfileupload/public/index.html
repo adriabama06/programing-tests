@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(window.location);
+        setInterval(async()=> {
+            const selectedFile = document.getElementById('in').files[0];
+            console.log(selectedFile);
+        }, 10000);
+    </script>
+    <form action='/file-upload' method='post' encType="multipart/form-data">
+        <input id="in" type="file" name="upload" />
+        <input type='submit' value='Upload!' />
+</form>		
+</body>
+</html>

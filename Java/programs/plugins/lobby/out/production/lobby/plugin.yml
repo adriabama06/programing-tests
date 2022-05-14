@@ -1,0 +1,15 @@
+name: Lobby
+version: 0.0.1
+author: adriabama06
+main: es.lobby.Main
+api-version: 1.8.8
+website: https://discord.com/invite/WgQdFbFFhn
+commands:
+  test:
+    description: describe your command it will appear with /help
+    usage: the test
+    aliases: [first, hi]
+  lobby:
+    description: Toda la info sobre Lobby
+    usage: /lobby
+    aliases: [l]

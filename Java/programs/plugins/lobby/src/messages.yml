@@ -1,0 +1,16 @@
+consola-no-permitida: "&cEste comando no esta disponible para consola &e%cmd%"
+public-join: "&a&l%player% &r&eha entrado al servidor!"
+join: "&eBienvenido de nuevo &a&l%player%"
+leave: "&cAdios &c&l%player%"
+
+lobby:
+  enviando: "&aEnviandote al lobby"
+  no-hay-spawn: "&eEl spawn no esta puesto"
+  set-spawn: "&aSpawn seteado en &e%x% %y% %z%"
+
+help:
+  - "&e------ < &a&lLobby &r&e> ------"
+  - "&c&l-> &e/lobby spawn &c- &aVes al spawn"
+  - "&c&l-> &e/lobby setspawn &c- &aPon el spawn"
+  - "&c&l-> &e/lobby reload &c- &aRecarga la config"
+  - "&e-------------------------------"

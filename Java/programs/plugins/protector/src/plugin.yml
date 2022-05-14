@@ -1,0 +1,10 @@
+name: Protector
+version: 0.0.1
+author: adriabama06
+main: es.protector.Main
+api-version: 1.8.8
+website: https://discord.com/invite/WgQdFbFFhn
+commands:
+  protector:
+    description: Muestra los commandos de este plugin
+    usage: /protector [x y z] [x y z] nombre [mundo]

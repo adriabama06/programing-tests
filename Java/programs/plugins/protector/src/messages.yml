@@ -1,0 +1,10 @@
+consola-no-permitida: "&cEste comando no esta disponible para consola &e%cmd%"
+faltan-args: "&cA este comando faltan argumentos: &e%args%"
+protector:
+  areaset: "&aEl area se puso en: &e%1% &a- &e%2%"
+
+help:
+  - "&a------ < &e&l Protector &a> ------"
+  - "&c&l-> &e/protector setarea [x y z] [x y z] [area name] &c- &aSetea una area para despues en la config editarla"
+  - "&c&l-> &e/protector reload &c- &aRecarga la config"
+  - "&a----------------------------------"

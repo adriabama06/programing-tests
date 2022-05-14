@@ -1,0 +1,8 @@
+menu_de_juegos:
+  name: "&a&lModos de juego"
+  kitpvp:
+    slot: 5
+    material: "iron_sword"
+    displayName: "&e&lKitPvp"
+    description:
+      - "&7Abre el menu de la lista de juegos"

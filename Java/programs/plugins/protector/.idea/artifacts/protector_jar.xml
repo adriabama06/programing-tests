@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="protector:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/protector_jar</output-path>
+    <root id="archive" name="protector.jar">
+      <element id="module-output" name="protector" />
+    </root>
+  </artifact>
+</component>
