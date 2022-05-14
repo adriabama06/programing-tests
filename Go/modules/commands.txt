@@ -1,0 +1,8 @@
+go mod init <Pakage>
+
+go run . # Run
+
+If variable of func is in minus is because you don't like export,
+
+printHello() // error not exported
+PrintHello() // OK exported
