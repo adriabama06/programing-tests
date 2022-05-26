@@ -3,16 +3,16 @@
 
 ```
 int	                    %d, %i
-char	                %c
-float	                %f
-double	                %lf
+char	                    %c
+float	                    %f
+double	                    %lf
 short int	            %hd
-unsigned int	        %u
+unsigned int	            %u
 long int	            %li
-long long int	        %lli
+long long int	            %lli
 unsigned long int	    %lu
-unsigned long long int	%llu
-signed char         	%c
-unsigned char	        %c
-long double  	        %Lf
+unsigned long long int	    %llu
+signed char         	    %c
+unsigned char	            %c
+long double  	            %Lf
 ```
