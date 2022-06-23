@@ -1,0 +1,1 @@
+export function interpolate(x: number, y: number, precission?: number): number[];
