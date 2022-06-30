@@ -11,3 +11,9 @@
 - Cpu Multi 16: `0.18` seconds
 - Gpu Single Grid 1: `0.16` seconds
 - Gpu Single Grid 8: `0.16` seconds (in this case I believe this don't run fast because I don't optimize the code)
+
+# Extra - Pi 4 (CPU)
+
+- Cpu Single: `7.236` seconds
+- Cpu Multi 2: `3.954` seconds
+- Cpu Multi 4: `2.452` seconds
