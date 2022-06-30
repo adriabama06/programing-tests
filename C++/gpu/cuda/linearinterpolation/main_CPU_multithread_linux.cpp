@@ -65,9 +65,16 @@ struct ArrayObject* interpolate(float x, float y, int precission)
     pthread_t threads[MAX_THREADS];
     
     if(precission < MAX_THREADS) {
-        for(int i = 0; i < precission; i++) {
-            arr[i] = smallnumber + (diferenceByPrecission * (i+1));
-        }
+        struct thread_data* data = (struct thread_data*) calloc(1, sizeof(struct thread_data));
+
+        data->startIndex = 0;
+        data->endIndex = precission;
+
+        data->smallnumber = &smallnumber;
+        data->diferenceByPrecission = &diferenceByPrecission;
+        data->arr = arr;
+
+        work(data);
     } else {
         int numberToAddToIndex = precission / MAX_THREADS;
 
@@ -75,6 +82,7 @@ struct ArrayObject* interpolate(float x, float y, int precission)
             struct thread_data* data = (struct thread_data*) calloc(1, sizeof(struct thread_data));
             data->startIndex = i * numberToAddToIndex;
             data->endIndex = (i+1) * numberToAddToIndex;
+
             data->smallnumber = &smallnumber;
             data->diferenceByPrecission = &diferenceByPrecission;
             data->arr = arr;
