@@ -1,63 +1,58 @@
+#include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <sys/socket.h>
 #include <unistd.h>
-#define PORT 8080
-int main(int argc, char const* argv[])
+#include <errno.h>
+#include <string.h>
+#include <sys/types.h>
+#include <time.h>
+
+#define PORT 1180
+
+int main(int argc, char *argv[])
 {
-    int server_fd, new_socket, valread;
-    struct sockaddr_in address;
-    int opt = 1;
-    int addrlen = sizeof(address);
-    char buffer[1024] = { 0 };
-    char* hello = "Hello from server";
-  
-    // Creating socket file descriptor
-    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0))
-        == 0) {
-        perror("socket failed");
-        exit(EXIT_FAILURE);
-    }
-  
-    // Forcefully attaching socket to the port 8080
-    if (setsockopt(server_fd, SOL_SOCKET,
-                   SO_REUSEADDR | SO_REUSEPORT, &opt,
-                   sizeof(opt))) {
-        perror("setsockopt");
-        exit(EXIT_FAILURE);
-    }
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(PORT);
-  
-    // Forcefully attaching socket to the port 8080
-    if (bind(server_fd, (struct sockaddr*)&address,
-             sizeof(address))
-        < 0) {
-        perror("bind failed");
-        exit(EXIT_FAILURE);
-    }
-    if (listen(server_fd, 3) < 0) {
-        perror("listen");
-        exit(EXIT_FAILURE);
-    }
-    if ((new_socket
-         = accept(server_fd, (struct sockaddr*)&address,
-                  (socklen_t*)&addrlen))
-        < 0) {
-        perror("accept");
-        exit(EXIT_FAILURE);
-    }
-    valread = read(new_socket, buffer, 1024);
-    printf("%s\n", buffer);
-    send(new_socket, hello, strlen(hello), 0);
-    printf("Hello message sent\n");
-    
-  // closing the connected socket
-    close(new_socket);
-  // closing the listening socket
-    shutdown(server_fd, SHUT_RDWR);
-    return 0;
+	/* creates an UN-named socket inside the kernel and returns
+	 * an integer known as socket descriptor
+	 * This function takes domain/family as its first argument.
+	 * For Internet family of IPv4 addresses we use AF_INET
+	 */
+
+	int listenfd = socket(AF_INET, SOCK_STREAM, 0);
+
+	struct sockaddr_in serv_addr;
+
+	memset(&serv_addr, '0', sizeof(serv_addr));
+
+	serv_addr.sin_family = AF_INET;
+	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	serv_addr.sin_port = htons(PORT);
+
+	/* The call to the function "bind()" assigns the details specified
+	 * in the structure 『serv_addr' to the socket created in the step above
+	 */
+	bind(listenfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr));
+
+	/* The call to the function "listen()" with second argument as 10 specifies
+	 * maximum number of client connections that server will queue for this listening
+	 * socket.
+	 */
+	listen(listenfd, 10);
+
+	while(1)
+	{
+        printf("This was the server\n");
+		/* In the call to accept(), the server is put to sleep and when for an incoming
+		 * client request, the three way TCP handshake* is complete, the function accept()
+		 * wakes up and returns the socket descriptor representing the client socket.
+		 */
+		int connfd = accept(listenfd, (struct sockaddr*)NULL, NULL); // the code get frozen here
+        char sendBuff[] = "Hello Client, I have received your connection";
+        
+		write(connfd, sendBuff, strlen(sendBuff));
+
+		close(connfd);
+		sleep(1); // wait 1s before accepting next connection
+	}
 }
