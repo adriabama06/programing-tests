@@ -1,19 +1,19 @@
-fn readinput() -> String {
-    let mut toreturn = String::new();
-	std::io::stdin().read_line(&mut toreturn).unwrap();
-	return toreturn;
-}
+use std::io;
 
 fn main() {
-    print!("Write your name: ");
+    println!("What is your name?");
 
-    let username = readinput();
+    let mut name = String::new();
+    io::stdin().read_line(&mut name).expect("Failed to read line");
+    name = name.trim().to_string();
 
-	print!("Write your age: ");
-    // let my_int = my_string.parse::<i32>().unwrap()
-	// if you specify type invariable automatically takes  <T>
-	// let my_int: i32 = my_string.parse().unwrap();
-    let age: i32  = readinput().parse();
+
+    println!("What is your age?");
     
-	print!("Hello my name is {} and i am {} yo", username, age);
+    let mut age = String::new();
+    io::stdin().read_line(&mut age).expect("Failed to read line");
+    age = age.trim().to_string();
+    
+    
+    println!("Hello {} you are {} years old", name, age);
 }
