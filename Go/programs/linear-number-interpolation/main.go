@@ -9,8 +9,12 @@ func printArray(arr []float32) {
 	fmt.Print("\n")
 }
 
-func work(i int, smallnumber *float32, diferenceByPrecission *float32, arr *[]float32) {
-	(*arr)[i] = *smallnumber + (*diferenceByPrecission * float32(i+1))
+func work(startIndex int, endIndex int, smallnumber *float32, diferenceByPrecission *float32, arr *[]float32) {
+
+	for i := startIndex; i < endIndex; i++ {
+		(*arr)[i] = *smallnumber + (*diferenceByPrecission * float32(i+1))
+	}
+
 }
 
 func interpolate(x float32, y float32, precission int) []float32 {
@@ -26,9 +30,7 @@ func interpolate(x float32, y float32, precission int) []float32 {
 
 	var diferenceByPrecission float32 = diference / float32(precission+1)
 
-	for i := 0; i < precission; i++ {
-		work(i, &smallnumber, &diferenceByPrecission, &toreturn)
-	}
+	work(0, precission, &smallnumber, &diferenceByPrecission, &toreturn)
 
 	return toreturn
 }
