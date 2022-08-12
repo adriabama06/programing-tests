@@ -21,11 +21,11 @@ Raspbian Debian GNU/Linux 11 (bullseye) aarch64 (64bit for arm) 2GHz (overclock)
 
 | Lang          | Single Thread | Multi Thread |
 | ------------- | -------------:| -----------: |
-| C             | s             | s            |
-| Go            | s             | s            |
+| C             | 7.20s         | 5.24s        |
+| Go            | 16.08s        | 14.81s       |
 | JavaScript    | -             | -            |
 | Python        | 1137.36s      | -            |
-| Rust          | 66.74s             | idk how code |
+| Rust          | 66.74s        | idk how code |
 
 ok in this case python use close to 3500MB of RAM (i have 4GB) for do all the work, and never ends because is killed by the system (the time show is the time at the process end)
 javascript death because is too many work
