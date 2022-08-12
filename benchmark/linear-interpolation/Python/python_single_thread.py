@@ -1,9 +1,9 @@
 def save(arr):
     f = open("resultPython.txt", "w")
 
-	cuantity = 1000000
+    cuantity = 1000000
 
-	limitedSelection = len(arr) / cuantity
+    limitedSelection = int(len(arr) / cuantity)
 
     for i in range(0, cuantity):
         f.write(f"{i * limitedSelection} {arr[i * limitedSelection]}\n")

@@ -67,7 +67,10 @@ struct ArrayObject* interpolate(float x, float y, int precission)
 
     float diferenceByPrecission = diference / (precission+1);
     
-    const int MAX_THREADS = GetMaximumThreads();
+    SYSTEM_INFO sysinfo;
+    GetSystemInfo(&sysinfo);
+
+    int MAX_THREADS = sysinfo.dwNumberOfProcessors;
 
     if(precission < MAX_THREADS) {
         struct thread_data* data = (struct thread_data*) calloc(1, sizeof(struct thread_data));
@@ -81,7 +84,7 @@ struct ArrayObject* interpolate(float x, float y, int precission)
 
         work(data);
     } else {
-        HANDLE threads[MAX_THREADS];
+        HANDLE* threads = (HANDLE*) calloc(MAX_THREADS, sizeof(HANDLE));
 
         int numberToAddToIndex = precission / MAX_THREADS;
 
