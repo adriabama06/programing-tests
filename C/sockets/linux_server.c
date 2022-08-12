@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	serv_addr.sin_port = htons(PORT);
 
 	/* The call to the function "bind()" assigns the details specified
-	 * in the structure 『serv_addr' to the socket created in the step above
+	 * in the structure 'serv_addr' to the socket created in the step above
 	 */
 	bind(listenfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr));
 
@@ -48,6 +48,19 @@ int main(int argc, char *argv[])
 		 * wakes up and returns the socket descriptor representing the client socket.
 		 */
 		int connfd = accept(listenfd, (struct sockaddr*)NULL, NULL); // the code get frozen here
+		if(connfd < 0) {
+			printf("\n Error : Accept Failed \n");
+			continue;
+		}
+		
+		char buff[1024];
+		memset(buff, '0', sizeof(buff));
+		int n = read(connfd, buff, sizeof(buff));
+		if(n < 0) {
+			printf("\n Error : Read Failed \n");
+			continue;
+		}
+
         char sendBuff[] = "Hello Client, I have received your connection";
         
 		write(connfd, sendBuff, strlen(sendBuff));
