@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 		 */
 		int connfd = accept(listenfd, (struct sockaddr*)NULL, NULL); // the code get frozen here
 		if(connfd < 0) {
-			printf("\n Error : Accept Failed \n");
+			printf("\nError : Accept Failed \n");
 			continue;
 		}
 		
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 		memset(buff, '0', sizeof(buff));
 		int n = read(connfd, buff, sizeof(buff));
 		if(n < 0) {
-			printf("\n Error : Read Failed \n");
+			printf("\nError : Read Failed \n");
 			continue;
 		}
 
