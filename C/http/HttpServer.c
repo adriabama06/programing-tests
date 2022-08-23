@@ -1,10 +1,11 @@
-// Server side C program to demonstrate Socket programming
 #include <stdio.h>
 #include <sys/socket.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
+
+#include "headers/http_req_parser.h"
 
 int main(int argc, char const *argv[])
 {
@@ -37,15 +38,38 @@ int main(int argc, char const *argv[])
         int sockfd = accept(listenfd, (struct sockaddr*)&serv_addr, (socklen_t*)&serv_addr_len);
 
         char* buffer = (char*) malloc(1024);
-        long int valread = read(sockfd, buffer, 30000);
-        printf("%s\n", buffer);
-
+        long int valread = read(sockfd, buffer, 1024);
         
+        //printf("%s\n", buffer);
 
-        const char* hello = "HTTP/1.1 200 OK\nContent-Length: 12\nContent-Type: text/plain\n\nHello world!";
+        HTTP_REQUEST* req = http_req_header_parse(buffer);
+        
+        if(req->method != GET)
+        {
+            const char* message = "HTTP/1.1 200 OK\nContent-Type: text/plain\n\nOnly accept GET";
+            write(sockfd, message, strlen(message));
+            close(sockfd);
+            continue;
+        }
 
-        write(sockfd, hello, strlen(hello));
+        if(startsWith(req->path, "/favicon.ico")) {
+            close(sockfd);
+            continue;
+        }
+
+        printf("%s -> %s | %s\n", req->host, req->path, req->accept_encoding);
+
+        if(startsWith(req->path, "/secret")) {
+            const char* message = "HTTP/1.1 200 OK\nContent-Type: text/plain\n\nBienvenido a la pagina secreta :D";
+
+            write(sockfd, message, strlen(message));
+            close(sockfd);
+            continue;
+        }
+
+        const char* message = "HTTP/1.1 200 OK\nContent-Length: 12\nContent-Type: text/plain\n\nHello world!";
+
+        write(sockfd, message, strlen(message));
         close(sockfd);
     }
-    
 }
