@@ -36,8 +36,8 @@ int main(int argc, char const *argv[])
     {
         int sockfd = accept(listenfd, (struct sockaddr*)&serv_addr, (socklen_t*)&serv_addr_len);
 
-        char buffer[30000] = {0};
-        long valread = read(sockfd, buffer, 30000);
+        char* buffer = (char*) malloc(1024);
+        long int valread = read(sockfd, buffer, 30000);
         printf("%s\n", buffer);
 
         

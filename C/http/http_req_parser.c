@@ -95,7 +95,7 @@ int main()
 
     HTTP_REQUEST* headers = (HTTP_REQUEST*) calloc(1, sizeof(HTTP_REQUEST));
 
-    headers->method = -1; // for make by default is unknown
+    headers->method = unknown; // for make by default is unknown
     headers->host.port = -1; // for make know the port is unknown in this moment
 
     char** http_req_split = (char**) malloc(http_req_file_size);
@@ -226,6 +226,12 @@ int main()
         }
     }
 
+    free(http_req);
+    free(http_req_split);
+    free(temp);
+
+    fclose(http_req_file);
+
     printf("Method: %d\n", headers->method);
     printf("Path: %s\n", headers->path);
     printf("Protocol Version: %s\n", headers->protocol_version);
@@ -238,8 +244,6 @@ int main()
     printf("Accept: %s\n", headers->accept);
     printf("Accept Encoding: %s\n", headers->accept_encoding);
     printf("Cookie: %s\n", headers->cookie);
-
-    fclose(http_req_file);
    
     return 0;
 }
