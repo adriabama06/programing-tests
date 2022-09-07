@@ -6,15 +6,22 @@
 #include <netinet/in.h>
 #include <string.h>
 
-#include "port.h"
-//#define PORT 25566
 int main(int argc, char const *argv[])
 {
+    if(argc < 2) {
+        return -1;
+    }
+
+    const char* port_str = argv[1];
+    const int PORT = atoi(port_str);
+
+    printf("Using port %d\n", PORT);
+
     int server_fd, new_socket; long valread;
     struct sockaddr_in address;
     int addrlen = sizeof(address);
     
-    char *hello = "Hello from server";
+    char *hello = "HTTP/1.1 200 OK\nContent-Length: 12\nContent-Type: text/plain\n\nHello world!"; // the content length is optional
     
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
