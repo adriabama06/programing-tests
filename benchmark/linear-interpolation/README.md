@@ -2,7 +2,7 @@
 Get 450000000 numbers (in float in 32 bits) between 0 and 1000
 
 # Results on i7 11700kf:
-Windows 10 Home x64 3.60GHz 16 threads
+**Windows 10 Home x64 3.60GHz 16 threads**
 
 | Lang          | Single Thread | Multi Thread |
 | ------------- | -------------:| -----------: |
@@ -13,11 +13,25 @@ Windows 10 Home x64 3.60GHz 16 threads
 | Rust          | 11.30s        | idk how code |
 
 idk why rust cut code at line 202050 when is writing the file (0.44900224 number between 0 and 1000)
+
 wtf python uses 13GB of RAM (i have 16GB) for do all the work
+
 javascript death because is too many work
 
+**Manjaro OS 21 x64 Gnome (5.15.60-1-MANJARO) 3.60GHz 16 threads**
+
+| Lang          | Single Thread | Multi Thread |
+| ------------- | -------------:| -----------: |
+| C             | 0.81s         | 1.20s        |
+| Go            | 0.66s         | 1.39s        |
+| JavaScript    | -             | -            |
+| Python        | 218.21s       | 229.60s      |
+| Rust          | 8.87s         | idk how code |
+
+Same as windwos -> idk why rust cut code at line 202050 when is writing the file (0.44900224 number between 0 and 1000)
+
 # Results on Raspberry Pi 4:
-Raspbian Debian GNU/Linux 11 (bullseye) aarch64 (64bit for arm) 2GHz (overclock) 4 threads
+**Raspbian Debian GNU/Linux 11 (bullseye) aarch64 (64bit for arm) 2GHz (overclock) 4 threads**
 
 | Lang          | Single Thread | Multi Thread |
 | ------------- | -------------:| -----------: |
