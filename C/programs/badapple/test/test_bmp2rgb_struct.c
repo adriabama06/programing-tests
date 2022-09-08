@@ -1,11 +1,25 @@
 /*
-file.bmp
-First 54 bytes is for data of the image like resolution, color depth, etc...
-byte 18 is for width in signed int
-byte 22 is for height in signed int
-byte 28 is for bitcount (color depth * color channel) (in my case i got 24 because is 8 bit * R G B like : (8*3 = 24))
-for get the size for malloc do: ((width * bitcount + 31) / 32) * 4 * height; or using my calc: (width * 3) * height
+this write file: rgb.bin (realy the extension is what you like, dosen't matter)
+and after use test_rgb_bin2txt.c for load and do the last conversion
 */
+
+typedef struct rgb_struct
+{
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+} rgb;
+
+
+typedef struct image_struct
+{
+    int width;
+    int height;
+    int size;
+    rgb* pixels;
+} image;
+
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,15 +43,20 @@ int main()
 
     fread(data, 1, size, file);
 
+    image* img = (image*) malloc(sizeof(image));
+
+    img->pixels = (unsigned char *) malloc(size);
+
+    FILE* result = fopen("rgb.bin", "wb");
+
     for(int row = height - 1; row >= 0; row--) // the rows is reverse or something ¿? mind break
     {
-        printf("Start Row :\n");
         for(int col = 0; col < width; col++)
         {
             int pos = ((row * width) + col) * 3;
-            printf("rgb(%d, %d, %d)\n", data[pos], data[pos+1], data[pos+2]);
+            //fprintf(result, "%d,%d,%d", data[pos], data[pos+1], data[pos+2]);
+            
         }
-        printf(": End Row\n");
     }  
 
     return 0;
