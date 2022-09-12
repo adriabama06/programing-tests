@@ -9,10 +9,54 @@ for get the size for malloc do: ((width * bitcount + 31) / 32) * 4 * height; or 
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-int main()
+void printColor(unsigned char* data, int pos, int color_order)
 {
-    FILE* file = fopen("basic_test.bmp", "rb");
+    switch (color_order)
+    {
+    case 0:
+        printf("rgb(%d, %d, %d)\n", data[pos+2], data[pos+1], data[pos]);
+        break;
+    
+    case 1:
+        printf("gbr(%d, %d, %d)\n", data[pos+1], data[pos], data[pos+2]);
+        break;
+    
+    case 2:
+        printf("bgr(%d, %d, %d)\n", data[pos], data[pos+1], data[pos+2]);
+        break;
+    
+    default:
+        printf("Bad color order selected, rgb/gbr/bgr");
+        exit(-2);
+        break;
+    }
+}
+
+int main(int argc, const char *argv[])
+{
+    if(argc <= 1)
+    {
+        printf("Write input file\n");
+        return -1;
+    }
+
+    int input_color_order = 0; // 0 rgb, 1 gbr, 2 bgr
+
+    if(argc > 2)
+    {
+        if(strcmp(argv[2], "gbr"))
+        {
+            input_color_order = 1;
+        }
+        if(strcmp(argv[2], "bgr"))
+        {
+            input_color_order = 2;
+        }
+    }
+
+    FILE* file = fopen(argv[1], "rb");
 
     char info[54] = { 0 }; // char is 8 bit int in C
 
@@ -22,8 +66,6 @@ int main()
     int height = *(int*) (info + 22);
     int bitcount = *(int*) (info + 28);
     int size = (width * 3) * height;
-
-    printf("%d x %d @ %d - - %d\n", width, height, bitcount, size);
 
     unsigned char* data = (unsigned char*) malloc(size);
 
@@ -35,10 +77,12 @@ int main()
         for(int col = 0; col < width; col++)
         {
             int pos = ((row * width) + col) * 3;
-            printf("rgb(%d, %d, %d)\n", data[pos], data[pos+1], data[pos+2]);
+            printColor(data, pos, input_color_order);
         }
         printf(": End Row\n");
-    }  
+    }
+
+    printf("%d x %d @ %d - - %d\n", width, height, bitcount, size);
 
     return 0;
 }

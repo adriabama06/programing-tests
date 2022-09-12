@@ -57,7 +57,7 @@ int main()
             //fprintf(result, "%d,%d,%d", data[pos], data[pos+1], data[pos+2]);
             
         }
-    }  
+    }
 
     return 0;
 }
