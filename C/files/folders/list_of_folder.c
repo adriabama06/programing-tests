@@ -21,7 +21,42 @@ int main(int argc, const char *argv[])
     
     for (int files_count = 0; (entry = readdir(dir_to_scan)) != NULL; files_count++)
     {
-        printf("%d - %s\n", files_count, entry->d_name);
+        printf("%d - %s ", files_count, entry->d_name);
+        
+        if(entry->d_type == DT_REG)
+        {
+            printf("(regular file type)\n");
+        }
+        
+        else if(entry->d_type == DT_DIR)
+        {
+            printf("(directory type)\n");
+        }
+        
+        else if(entry->d_type == DT_FIFO)
+        {
+            printf("(pipe type)\n");
+        }
+        
+        else if(entry->d_type == DT_SOCK)
+        {
+            printf("(socket type)\n");
+        }
+
+        else if(entry->d_type == DT_CHR)
+        {
+            printf("(charecter device type)\n");
+        }
+
+        else if(entry->d_type == DT_BLK)
+        {
+            printf("(block type)\n");
+        }
+
+        else if(entry->d_type == DT_LNK)
+        {
+            printf("(symbolic link type)\n");
+        }
     }
 
     closedir(dir_to_scan);
