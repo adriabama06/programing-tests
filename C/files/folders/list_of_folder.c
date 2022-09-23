@@ -17,10 +17,19 @@ int main(int argc, const char *argv[])
         return 1;
     }
 
-    struct dirent *entry;
+    int cnt = 0;
+
+    while (readdir(dir_to_scan)) {cnt++;}
     
-    for (int files_count = 0; (entry = readdir(dir_to_scan)) != NULL; files_count++)
+    seekdir(dir_to_scan, 0);
+
+    printf("%d files in %s\n", cnt, argv[1]);
+    
+    // use a count before calculatet whith while or use: (entry = readdir(dir_to_scan)) != NULL
+    for (int files_count = 0; files_count < cnt; files_count++)
     {
+        struct dirent* entry = readdir(dir_to_scan);
+
         printf("%d - %s ", files_count, entry->d_name);
         
         if(entry->d_type == DT_REG)
