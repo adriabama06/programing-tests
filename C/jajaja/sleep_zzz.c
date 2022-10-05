@@ -1,6 +1,6 @@
-// #ifdef _WIN32
-//     #include <windows.h>
-// #else
+#ifdef _WIN32
+    #include <windows.h>
+#endif
 //     #include <unistd.h>
 // #endif
 // Sleep is only in seconds, and is different for win and linux
@@ -34,7 +34,11 @@ int main(int argc, const char* argv[])
 
     printf("Hello World\n");
 
-    sleep(time);
+    #ifdef _WIN32
+        Sleep(time);
+    #else
+        sleep(time);
+    #endif
 
     printf("Bye world\n");
 
