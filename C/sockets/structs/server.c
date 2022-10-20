@@ -17,6 +17,11 @@
 #define CONTENT_TYPE_MESSAGE 1
 #define CONTENT_TYPE_FLOAT 2
 
+struct MESSAGE_STRUCT {
+    char author[30];
+    char content[50];
+};
+
 int main(int argc, const char* argv[])
 {
     if(argc < 2)
@@ -88,6 +93,7 @@ int main(int argc, const char* argv[])
 
         if(content_type == CONTENT_TYPE_FILE)
         {
+            printf("Conection type recived: FILE\n");
             uint8_t filename_len = 0;
             uint8_t filecontent_len = 0;
 
@@ -110,6 +116,27 @@ int main(int argc, const char* argv[])
 
             free(filename);
             free(filecontent);
+        }
+
+        if(content_type == CONTENT_TYPE_MESSAGE)
+        {
+            printf("Conection type recived: MESSAGE\n");
+            struct MESSAGE_STRUCT message = {0};
+            
+            recv(client_fd, &message, sizeof(struct MESSAGE_STRUCT), 0);
+            
+            printf("Recived message:\n");
+            printf("%s: %s\n", message.author, message.content);
+        }
+
+        if(content_type == CONTENT_TYPE_FLOAT)
+        {
+            printf("Conection type recived: FLOAT\n");
+            float number = 0.0f;
+
+            recv(client_fd, &number, sizeof(float), 0);
+
+            printf("Recived float: %f\n", number);
         }
 
         printf("Closing connection\n");
