@@ -1,3 +1,13 @@
+/*
+!!! WARNING !!!
+If you use struct with dynamic memory like:
+strings/arrays/other structs you need seend size before message for server memory allocation
+
+type_len * sizeof(char) is not necessary because sizeof(char) == 1
+and
+x * 1 = x
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -16,10 +26,16 @@
 #define CONTENT_TYPE_FILE 0
 #define CONTENT_TYPE_MESSAGE 1
 #define CONTENT_TYPE_FLOAT 2
+#define CONTENT_TYPE_MESSAGE_DYNAMIC 3
 
 struct MESSAGE_STRUCT {
     char author[30];
     char content[50];
+};
+
+struct MESSAGE_DYNAMIC_STRUCT {
+    char* author;
+    char* content;
 };
 
 int main(int argc, const char* argv[])
@@ -137,6 +153,31 @@ int main(int argc, const char* argv[])
             recv(client_fd, &number, sizeof(float), 0);
 
             printf("Recived float: %f\n", number);
+        }
+
+        if(content_type == CONTENT_TYPE_MESSAGE_DYNAMIC)
+        {
+            printf("Conection type recived: MESSAGE_DYNAMIC\n");
+
+            uint32_t author_len = 0;
+            uint32_t content_len = 0;
+
+            recv(client_fd, &author_len, sizeof(uint32_t), 0);
+            recv(client_fd, &content_len, sizeof(uint32_t), 0);
+
+            struct MESSAGE_DYNAMIC_STRUCT message_dy = {0};
+
+            message_dy.author = malloc(author_len * sizeof(char));
+            message_dy.content = malloc(content_len * sizeof(char));
+
+            recv(client_fd, message_dy.author, author_len, 0);
+            recv(client_fd, message_dy.content, content_len, 0);
+
+            printf("Recived message:\n");
+            printf("%s: %s\n", message_dy.author, message_dy.content);
+
+            free(message_dy.author);
+            free(message_dy.content);
         }
 
         printf("Closing connection\n");

@@ -3,6 +3,9 @@
 If you use struct with dynamic memory like:
 strings/arrays/other structs you need seend size before message for server memory allocation, see: client_message_dynamic.c
 
+type_len * sizeof(char) is not necessary because sizeof(char) == 1
+and
+x * 1 = x
 */
 
 #include <stdio.h>
@@ -20,9 +23,9 @@ strings/arrays/other structs you need seend size before message for server memor
 
 #include <unistd.h>
 
-struct MESSAGE_STRUCT {
-    char author[30];
-    char content[50];
+struct MESSAGE_DYNAMIC_STRUCT {
+    char* author;
+    char* content;
 };
 
 int main(int argc, const char* argv[])
@@ -74,22 +77,30 @@ int main(int argc, const char* argv[])
 
     printf("Connected to the server!\n");
     
-    uint8_t content_type = 1; // message struct
+    uint8_t content_type = 3; // message struct
 
-    struct MESSAGE_STRUCT message = {0};
+    struct MESSAGE_DYNAMIC_STRUCT message = {0};
     
-    strcpy(&message.author, argv[3]);
-    strcpy(&message.content, argv[4]);
+    message.author = malloc(strlen(argv[3]) * sizeof(char));
+    message.content = malloc(strlen(argv[4]) * sizeof(char));
+
+    strcpy(message.author, argv[3]);
+    strcpy(message.content, argv[4]);
+
+    uint32_t author_len = strlen(message.author);
+    uint32_t content_len = strlen(message.content);
 
 
-    printf("Sending type as message struct...\n");
+    printf("Sending type sizes...\n");
 
     send(server_socket_fd, &content_type, sizeof(uint8_t), 0);
+    send(server_socket_fd, &author_len, sizeof(uint32_t), 0);
+    send(server_socket_fd, &content_len, sizeof(uint32_t), 0);
 
-    printf("Sending message struct... with content: %s: %s\n", message.author, message.content);
+    printf("Sending data struct... with content: \"%s\" & \"%s\"\n", message.author, message.content);
 
-    send(server_socket_fd, &message, sizeof(struct MESSAGE_STRUCT), 0);
-
+    send(server_socket_fd, message.author, author_len, 0);
+    send(server_socket_fd, message.content, content_len, 0);
 
     printf("Data sent, closing connection!\n");
 
