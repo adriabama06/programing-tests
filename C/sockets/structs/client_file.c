@@ -16,10 +16,10 @@
 int main(int argc, const char* argv[])
 {
     if(argc < 5)
-	{
-		printf("%s <ip> <port> <file name> <file content>\n", argv[0]);
-		return 0;
-	}
+    {
+        printf("%s <ip> <port> <file name> <file content>\n", argv[0]);
+        return 0;
+    }
 
     const char* server_ip = argv[1]; // 128.0.0.1 for localhost
     int PORT = atoi(argv[2]);
@@ -32,11 +32,11 @@ int main(int argc, const char* argv[])
     server_info.sin_port = htons(PORT);
 
     if(inet_pton(AF_INET, server_ip, &server_info.sin_addr) <= 0)
-	{
-		printf("Error on inet_pton\n");
+    {
+        printf("Error on inet_pton\n");
 
-		return 0;
-	}
+        return 0;
+    }
 
     socklen_t server_info_len = sizeof(server_info);
 
