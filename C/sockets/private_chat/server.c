@@ -41,7 +41,7 @@ void send_to_all(int** clients, uint32_t clients_len, MESSAGE* msg)
 {
     for (uint32_t i = 0; i < clients_len; i++)
     {
-        int clientfd = clients[i];
+        int* clientfd = clients[i];
 
         if(*clientfd == -1)
         {
