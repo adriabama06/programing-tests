@@ -34,16 +34,21 @@ typedef struct THREAD_LAUNCH_DATA_S
 void send_message(int* clientfd, MESSAGE* msg)
 {
     send(*clientfd, &msg->content_len, sizeof(uint32_t), 0);
-    send(*clientfd, msg->content, msg->content_len, 0);
+    send(*clientfd, msg->content, msg->content_len * sizeof(char), 0);
 }
 
-void send_to_all(int** clients, uint32_t clients_len, MESSAGE* msg)
+void send_to_all(int** clients, uint32_t clients_len, int client_to_ignore, MESSAGE* msg)
 {
     for (uint32_t i = 0; i < clients_len; i++)
     {
         int* clientfd = clients[i];
 
         if(*clientfd == -1)
+        {
+            continue;
+        }
+
+        if(*clientfd == client_to_ignore)
         {
             continue;
         }
@@ -66,7 +71,6 @@ void* client_handler(void* __thread_data /* THREAD_LAUNCH_DATA */)
 
         recv(thread_data->client_fd, msg.content, msg.content_len * sizeof(char), 0);
 
-        
         if(strcmp(msg.content, "exit") == 0)
         {
             free(msg.content);
@@ -76,17 +80,17 @@ void* client_handler(void* __thread_data /* THREAD_LAUNCH_DATA */)
         
         MESSAGE msg_to_send = {0};
 
-        msg_to_send.content_len = thread_data->author_len + 1 + msg.content_len;
+        msg_to_send.content_len = thread_data->author_len + 4 + msg.content_len;
 
         msg_to_send.content = (char*) malloc(msg_to_send.content_len * sizeof(char));
     
         strcpy(msg_to_send.content, thread_data->author);
-        strcat(msg_to_send.content, " ");
+        strcat(msg_to_send.content, " > ");
         strcat(msg_to_send.content, msg.content);
 
+        printf("Sending to all: %s\n", msg_to_send.content);
         
-        send_to_all(thread_data->clients, *thread_data->clients_len, &msg_to_send);
-
+        send_to_all(thread_data->clients, *thread_data->clients_len, thread_data->client_fd, &msg_to_send);
 
         free(msg.content);
         free(msg_to_send.content);
@@ -176,8 +180,8 @@ int main(int argc, const char* argv[])
         printf("New client from \"%s:%d\" with name \"%s\"\n", inet_ntoa(thread_data->client_info.sin_addr), ntohs(thread_data->client_info.sin_port), thread_data->author);
 
 
-
         pthread_t handler;
+
         if(pthread_create(&handler, NULL, client_handler, thread_data) != 0)
         {
             printf("Error on create thread!\n");

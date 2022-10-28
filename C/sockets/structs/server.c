@@ -170,8 +170,8 @@ int main(int argc, const char* argv[])
             message_dy.author = malloc(author_len * sizeof(char));
             message_dy.content = malloc(content_len * sizeof(char));
 
-            recv(client_fd, message_dy.author, author_len, 0);
-            recv(client_fd, message_dy.content, content_len, 0);
+            recv(client_fd, message_dy.author, author_len * sizeof(char), 0);
+            recv(client_fd, message_dy.content, content_len * sizeof(char), 0);
 
             printf("Recived message:\n");
             printf("%s: %s\n", message_dy.author, message_dy.content);
