@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import {
   BrowserRouter, Routes, Route,
   Outlet, Link, useSearchParams,
-  redirect
+  useNavigate
 } from "react-router-dom";
 
 const NavBar = () => {
@@ -33,6 +33,8 @@ const Home = () => {
 };
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [count, setCount] = React.useState<number>(0);
 
   const increment = () => {
@@ -54,7 +56,18 @@ const Login = () => {
 
       <input type={"email"} placeholder={"Username"} onChange={(event) => setUsername(event.target.value)}></input>
       <input type={"password"} placeholder={"Password"} onChange={(event) => setPassword(event.target.value)}></input>
-      <button onClick={() => redirect(`/files?f=User:${username},Pass:${password}`)} onContextMenu={() => alert(`User: ${username}\nPass: ${password}`)}></button>
+      <button
+      onClick={
+        () => navigate({
+          pathname: "/files",
+          search: `?f=User:${username.replaceAll(" ", "+")}+,+Pass:${password.replaceAll(" ", "+")}`
+        })
+      }
+      
+      onContextMenu={
+        () => alert(`User: ${username}\nPass: ${password}`)
+      }
+      >Login!</button>
     </div>
   );
 };
