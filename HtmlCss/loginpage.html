@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <style>
+        .line {
+            height: 7px;
+            background-color: rgba(17, 17, 17, 0.8);
+            border-radius: 15px;
+            margin-bottom: 5px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #1a2431;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        #login {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 50px;
+            background-color: #354962;
+            box-shadow: 0px 0px 10px #354962;
+            border-radius: 15px;
+        }
+        #login h1 {
+            margin: 0;
+            margin-top: -15px;
+            margin-bottom: 15px;
+
+            font-size: 64px;
+            font-weight: 900;
+            color: #fff;
+        }
+        #login p {
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #BABABA;
+        }
+        #login input {
+            padding: 5px;
+            padding-left: 10px;
+            border-radius: 15px;
+            border-style: solid;
+            border-color: #000;
+            border-width: 2px;
+        }
+        #login button {
+            transition-duration: 450ms;
+            cursor: pointer;
+            margin-top: 25px;
+            padding: 3px;
+            padding-left: 10px;
+            border-radius: 15px;
+            border-style: solid;
+            border-color: #000;
+            border-width: 2px;
+
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+
+            background-color: #6a92c3;
+            color: #fff;
+        }
+        #login button:hover {
+            transition-duration: 450ms;
+            background-color: #84b6f4;
+        }
+    </style>
+    <div id="login">
+        <h1>Login</h1>
+        <span class="line"></span>
+        <p>Username:</p>
+        <input id="username" type="email" placeholder="Username..." />
+        <p>Password:</p>
+        <input id="password" type="password" placeholder="Password..." />
+        <button>Login</button>
+    </div>
+</body>
+</html>
