@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar archivo</title>
+    <%- include('./head.html') -%>
+</head>
+<body>
+    <script type="text/javascript">
+        async function bar(val) {
+            document.getElementById('bar').value = val;
+        };
+
+        async function uploadprogres(oEvent) {
+            if (oEvent.lengthComputable) {
+                var percentComplete = oEvent.loaded / oEvent.total * 100;
+                bar(percentComplete);
+            } else {
+
+            }
+        }
+
+        async function upload() {
+            //var url = "/ReadMoveWebServices/WSUploadFile.asmx/UploadFile";
+            var url = "/up";
+            var archivoSeleccionado = document.getElementById("myfile");
+            var file = archivoSeleccionado.files[0];
+            var fd = new FormData();
+            fd.append("archivo", file);
+            var xmlHTTP = new XMLHttpRequest();
+            //xmlHTTP.upload.addEventListener("loadstart", loadStartFunction, false);
+            xmlHTTP.upload.addEventListener("progress", progressFunction, false);
+            xmlHTTP.addEventListener("load", transferCompleteFunction, false);
+            xmlHTTP.addEventListener("error", uploadFailed, false);
+            xmlHTTP.addEventListener("abort", uploadCanceled, false);
+            xmlHTTP.open("POST", url, true);
+            //xmlHTTP.setRequestHeader('book_id','10');
+            xmlHTTP.send(fd);
+        };
+
+    </script>
+    <div>
+        <h3 style="cursor: pointer;" onclick="window.location = '/'" >Inicio</h3>
+    </div>
+    <br>
+    <form method="post" action="up" enctype="multipart/form-data"></form>
+        <div>
+            <input class="inputfile" name="file" id="filesToUpload" type="file" hidden/>
+        <label for="filesToUpload">Elije un archivo</label>
+        </div>
+        <br>
+        <button onclick="upload();" class="boton2" type="submit" class="submit-btn">Cargar</button>
+    </form>
+
+    <progress id="bar" value="0" max="100"></progress>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/login/index.js"></script>
+    <script type="text/javascript">
+
+        var socket = io();
+
+        socket.on('gologin', async (data) => {
+            logc(data);
+        });
+    </script>
+    <div>
+        <h1>Registrate:</h1>
+        <input id="mail" type="email" placeholder="Ponga su correo" >
+        <input id="pass" type="password" placeholder="Ponga su contraseña" >
+        <button onclick="log();">Iniciar sesion</button>
+    </div>
+</body>
+</html>

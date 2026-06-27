@@ -1,0 +1,333 @@
+
+server_name: adriabama06Server
+
+player_list_title: default
+player_list_title_rate: default
+serverinfo_pastebin_id: 7wV681fT
+server_ip: auto
+max_players: 20
+server_tickrate: 60
+use_reserved_slots: true
+lobby_waiting_time: default
+ipv4_bind_ip: 0.0.0.0
+ipv6_bind_ip: ::
+contact_email: default
+
+#Spawn settings
+minimum_MTF_time_to_spawn: 280
+maximum_MTF_time_to_spawn: 350
+maximum_MTF_respawn_amount: 15
+maximum_CI_respawn_amount: 15
+priority_mtf_respawn: true
+use_crypto_rng: false
+team_respawn_queue: 40143140314414041340
+smart_class_picker: true
+
+
+
+respawn_tickets_enable: true
+
+respawn_tickets_mtf_initial_count: 24
+respawn_tickets_ci_initial_count: 14
+
+respawn_tickets_mtf_classd_cuffed_escape_count: 1
+respawn_tickets_mtf_scientist_escape_count: 1
+respawn_tickets_mtf_scp_hurt_escape_count: 1
+respawn_tickets_ci_classd_escape_count: 1
+respawn_tickets_ci_scientist_cuffed_escape_count: 2
+respawn_tickets_ci_scientist_died_count: 1
+respawn_tickets_ci_scp_item_count: 2
+
+respawn_tickets_mtf_scp_hurt_interval: 0.25
+
+
+
+stamina_balance_use: 0
+
+stamina_balance_immunity: 3
+
+stamina_balance_regen_cd: 1
+
+stamina_balance_regen_speed: 1
+
+stamina_balance_walk_speed: 1.2
+
+stamina_balance_sprint_speed: 1.05
+
+
+server_forced_class: -1
+map_seed: -1
+
+intercom_cooldown: 120
+intercom_max_speech_time: 20
+auto_round_restart_time: 10
+friendly_fire: false
+friendly_fire_multiplier: 1
+warhead_tminus_start_duration: 90
+human_grenade_multiplier: 0.7
+scp_grenade_multiplier: 1
+lock_gates_on_countdown: true
+isolate_zones_on_countdown: false
+open_doors_on_countdown: true
+keep_items_after_escaping: true
+allow_playing_as_tutorial: true
+disable_decontamination: false
+096_destroy_locked_doors: true
+no_holidays: false
+allow_disarmed_interaction: false
+914_mode: default
+sinkhole_slow_amount: 30
+sinkhole_spawn_chance: 0
+disconnect_drop: true
+end_round_on_one_player: false
+
+ragdoll_cleanup_time: 0
+afk_time: 500
+constantly_check_afk: false
+
+
+pd_exit_count: 2
+pd_random_exit_rids:
+pd_random_exit_rids_after_decontamination:
+pd_refresh_exit: false
+
+mtf_can_cuff_researchers: true
+ci_can_cuff_class_d: true
+cuffed_escapee_change_team: true
+
+spawn_protect_disable: true
+spawn_protect_time: 30
+spawn_protect_team: [1, 2]
+spawn_protect_allow_dmg: true
+
+auto_warhead_broadcast_enabled: false
+auto_warhead_broadcast_message: The Alpha Warhead is being detonated
+auto_warhead_broadcast_time: 10
+auto_warhead_detonate_broadcast: The Alpha Warhead has been detonated now
+auto_warhead_detonate_broadcast_time: 10
+auto_decon_broadcast_enabled: false
+auto_decon_broadcast_message: Light Containment Zone is now decontaminated
+auto_decon_broadcast_time: 10
+
+
+grenade_chain_limit: 10
+
+grenade_chain_length_limit: 4
+
+
+
+online_mode: true
+ip_banning: true
+enable_whitelist: false
+forward_ports: true
+enable_query: false
+query_port_shift: 0
+query_use_IPv6: true
+administrator_query_password: none
+connections_delay_time: 5
+enable_sync_command_binding: false
+ratelimit_kick: true
+same_account_joining: false
+anticheat_console_output: false
+enable_fast_round_restart: true
+fast_round_restart_delay: 3.2
+
+preauth_challenge: true
+
+preauth_challenge_mode: reply
+preauth_challenge_base_length: 10
+preauth_challenge_time_window: 12
+preauth_challenge_clean_period: 4
+
+preauth_challenge_secret_length: 2
+
+
+enforce_same_ip: true
+no_enforcement_for_local_ip_addresses: true
+
+enforce_same_asn: true
+
+enable_ip_ratelimit: true
+enable_userid_ratelimit: true
+ip_ratelimit_window: 3
+userid_ratelimit_window: 5
+
+
+
+class_d_personnel_defaultammo: [0, 0, 0]
+nine_tailed_fox_scientist_defaultammo: [120, 20, 20]
+scientist_defaultammo: [0, 0, 0]
+chaos_insurgency_defaultammo: [0, 100, 0]
+nine_tailed_fox_lieutenant_defaultammo: [80, 0, 50]
+nine_tailed_fox_commander_defaultammo: [120, 0, 100]
+nine_tailed_fox_cadet_defaultammo: [40, 0, 100]
+tutorial_defaultammo: [0, 0, 0]
+facility_guard_defaultammo: [0, 35, 0]
+
+class_d_personnel_ammolimit: [80, 70, 50]
+nine_tailed_fox_scientist_ammolimit: [160, 100, 200]
+scientist_ammolimit: [80, 70, 50]
+chaos_insurgency_ammolimit: [80, 200, 100]
+nine_tailed_fox_lieutenant_ammolimit: [160, 100, 200]
+nine_tailed_fox_commander_ammolimit: [160, 100, 200]
+nine_tailed_fox_cadet_ammolimit: [160, 100, 200]
+tutorial_ammolimit: [160, 100, 200]
+facility_guard_ammolimit: [160, 100, 200]
+
+
+itemlimit_keycard: 3
+itemlimit_medical_item: 3
+itemlimit_weapon: 2
+itemlimit_grenade: 3
+itemlimit_scp_item: 3
+
+
+
+
+ff_detector_global_broadcast_seconds: 5
+ff_detector_global_adminchat_seconds: 6
+
+ff_detector_classD_can_damage_classD: false
+
+ff_detector_webhook_url: none
+
+ff_detector_round_enabled: true
+ff_detector_round_kills: 6
+ff_detector_round_damage: 500
+
+ff_detector_round_action: ban
+ff_detector_round_ban_time: 24h
+ff_detector_round_bankick_reason: You have been automatically banned for teamkilling.
+ff_detector_round_kill_reason: You have been automatically killed for teamkilling.
+
+ff_detector_round_adminchat_enable: false
+ff_detector_round_adminchat_message: %nick has been banned for teamkilling (round detector).
+
+ff_detector_round_broadcast_enable: true
+ff_detector_round_broadcast_message: %nick has been automatically banned for teamkilling.
+
+ff_detector_round_webhook_report: true
+
+ff_detector_life_enabled: true
+ff_detector_life_kills: 4
+ff_detector_life_damage: 300
+
+ff_detector_life_action: ban
+ff_detector_life_ban_time: 24h
+ff_detector_life_bankick_reason: You have been automatically banned for teamkilling.
+ff_detector_life_kill_reason: You have been automatically killed for teamkilling.
+
+ff_detector_life_adminchat_enable: false
+ff_detector_life_adminchat_message: %nick has been banned for teamkilling (life detector).
+
+ff_detector_life_broadcast_enable: true
+ff_detector_life_broadcast_message: %nick has been automatically banned for teamkilling.
+
+ff_detector_life_webhook_report: true
+
+
+ff_detector_window_enabled: true
+ff_detector_window_seconds: 180
+ff_detector_window_kills: 3
+ff_detector_window_damage: 250
+
+ff_detector_window_action: ban
+ff_detector_window_ban_time: 16h
+ff_detector_window_bankick_reason: You have been automatically banned for teamkilling.
+ff_detector_window_kill_reason: You have been automatically killed for teamkilling.
+
+ff_detector_window_adminchat_enable: false
+ff_detector_window_adminchat_message: %nick has been banned for teamkilling (window detector).
+
+ff_detector_window_broadcast_enable: true
+ff_detector_window_broadcast_message: %nick has been automatically banned for teamkilling.
+
+ff_detector_window_webhook_report: true
+
+
+ff_detector_spawn_enabled: true
+ff_detector_spawn_window_seconds: 120
+ff_detector_spawn_kills: 2
+ff_detector_spawn_damage: 180
+
+ff_detector_spawn_action: ban
+ff_detector_spawn_ban_time: 48h
+ff_detector_spawn_bankick_reason: You have been automatically banned for teamkilling.
+ff_detector_spawn_kill_reason: You have been automatically killed for teamkilling.
+
+ff_detector_spawn_adminchat_enable: false
+ff_detector_spawn_adminchat_message: %nick has been banned for teamkilling (spawn detector).
+
+ff_detector_spawn_broadcast_enable: true
+ff_detector_spawn_broadcast_message: %nick has been automatically banned for teamkilling.
+
+ff_detector_spawn_webhook_report: true
+
+
+
+custom_whitelist: false
+
+server_access_restriction: false
+
+custom_gamemode_server: false
+
+port_queue:
+ - 7777
+ - 7778
+ - 7779
+ - 7780
+ - 7781
+ - 7782
+ - 7783
+ - 7784
+
+gban_ban_ip: default
+
+ban_nickname_maxlength: default
+ban_nickname_trimunicode: default
+
+nickname_filter: default
+nickname_filter_replacement: default
+
+broadcast_kicks: false
+broadcast_kick_text: %nick% has been kicked from this server.
+broadcast_kick_duration: 5
+broadcast_bans: true
+broadcast_ban_text: %nick% has been banned from this server.
+broadcast_ban_duration: 5
+
+idle_mode_enabled: true
+idle_mode_time: 5000
+idle_mode_preauth_time: 30000
+idle_mode_tickrate: 1
+
+report_send_using_discord_webhook: false
+report_discord_webhook_url: PleaseSetWebhookUrlHere
+report_username: Cheater Report
+report_avatar_url: default
+report_color: 14423100
+report_server_name: My SCP:SL Server
+report_header: Player Report
+report_content: Player has just been reported.
+
+restart_after_rounds: 0
+
+full_restart_rejoin_time: 25
+
+
+geoblocking_mode: none
+
+geoblocking_ignore_whitelisted: true
+
+geoblocking_whitelist:
+ - AA
+ - AB
+ - AC
+
+geoblocking_blacklist:
+ - AA
+ - AB
+ - AC
+
+
+ci_on_start_percent: default

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar archivo</title>
+    <%- include('./head.html') -%>
+</head>
+<body>
+    <script type="text/javascript">
+    async function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+        async function bar(val) {
+            document.getElementById('bar').value = val;
+            document.getElementById('progeso').innerText = parseInt(val)+ "%";
+        };
+
+        async function uploadprogres(oEvent) {
+            if (oEvent.lengthComputable) {
+                var percentComplete = oEvent.loaded / oEvent.total * 100;
+                bar(percentComplete);
+            } else {
+
+            }
+        }
+
+        async function end() {
+            await document.getElementById('su').remove();
+            await document.getElementById('a').remove();
+            document.getElementById('progeso').innerText = "Listo";
+            await sleep(5000);
+            document.getElementById('bar').remove();
+            document.getElementById('progeso').innerText = "Recodificando video para chromecast.";
+            await sleep(5000);
+            document.getElementById('progeso').innerText = "Recodificando video para chromecast..";
+            await sleep(5000);
+            document.getElementById('progeso').innerText = "Recodificando video para chromecast...";
+            await sleep(5000);
+            document.getElementById('progeso').innerText = "Recodificando video para chromecast";
+            await sleep(6000);
+            document.getElementById('progeso').innerText = "Listo!";
+            await sleep(2000);
+            window.location = "/player";
+        }
+
+        async function upload() {
+            //var url = "/ReadMoveWebServices/WSUploadFile.asmx/UploadFile";
+            var url = "/up";
+            var archivoSeleccionado = document.getElementById("filesToUpload");
+            var file = archivoSeleccionado.files[0];
+            var fd = new FormData();
+            fd.append("file", file);
+            var xmlHTTP = new XMLHttpRequest();
+            //xmlHTTP.upload.addEventListener("loadstart", loadStartFunction, false);
+            xmlHTTP.upload.addEventListener("progress", uploadprogres, false);
+            /*xmlHTTP.addEventListener("load", transferCompleteFunction, false);
+            xmlHTTP.addEventListener("error", uploadFailed, false);
+            xmlHTTP.addEventListener("abort", uploadCanceled, false);*/
+            xmlHTTP.addEventListener("loadend", end, false)
+            xmlHTTP.open("POST", url, true);
+            //xmlHTTP.setRequestHeader('book_id','10');
+            xmlHTTP.send(fd);
+        };
+        
+        async function filechange() {
+            document.getElementById('selectfile').innerText = document.getElementById('filesToUpload').files[0].name;
+        };
+
+    </script>
+    <div>
+        <h3 id="a" style="cursor: pointer;" onclick="window.location = '/'" >Inicio</h3>
+    </div>
+    <br>
+    <div id="su">
+        <input class="inputfile" name="file" id="filesToUpload" onchange="filechange()" type="file" hidden/>
+        <p><label for="filesToUpload">Elije un archivo</label><p id="selectfile">Ningun archivo</p></p>
+        <br>
+        <button onclick="upload();" class="boton2" type="submit" class="submit-btn">Cargar</button>
+    </div>
+    <br>
+    <p>Progreso: </p><p id="progeso">aun no iniciado</p>
+    <progress id="bar" value="0" max="100"></progress>
+</body>
+</html>

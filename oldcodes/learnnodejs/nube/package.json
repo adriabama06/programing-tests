@@ -1,0 +1,31 @@
+{
+  "name": "nube",
+  "version": "0.0.1",
+  "description": "Crea tu propio servidor de archivos",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index.js",
+    "dev": "npx nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adriabama06/"
+  },
+  "keywords": [
+    "nube",
+    "drive"
+  ],
+  "author": "adriabama06",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "http": "0.0.1-security",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7",
+    "socket.io": "^3.0.3"
+  }
+}

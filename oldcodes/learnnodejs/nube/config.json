@@ -1,0 +1,8 @@
+{
+    "port": "3000",
+
+    "mysqlhost": "192.168.1.201",
+    "mysqldb": "fileslogin",
+    "mysqluser": "adria",
+    "mysqlpass": "0ZZ5GNtYHn8lUDFl"
+}

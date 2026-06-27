@@ -1,0 +1,17 @@
+{
+    "Username": "[REDACTED]",
+    "ServerIP": "[REDACTED]",
+    "Range": 5,
+    "SchematicName": "data.json",
+    "blockDelay": 50,
+    "StartBox": {
+        "x": 170,
+        "y": 62,
+        "z": 191
+    },
+    "EndBox": {
+        "x": 194,
+        "y": 71,
+        "z": 178 
+    }
+}

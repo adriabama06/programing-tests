@@ -1,0 +1,14 @@
+CREAR TABLAS:
+
+    CREATE TABLE `${NOMBRE DE LA TABLA}` ( ${data} ) ENGINE = InnoDB;
+
+    EX:
+        CREATE TABLE `users` ( `user` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `pass` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ) ENGINE = InnoDB;
+
+COMPROBAR SI EXISTE UNA TABLA O COLUMNA:
+                                         <-TABLA (optional)->
+    SELECT * FROM ${basededatos}.${tabla} WHERE `${columna}`;
+
+    EX:
+        SELECT * FROM MIBASEDEDATOS.users WHERE `user`;
+

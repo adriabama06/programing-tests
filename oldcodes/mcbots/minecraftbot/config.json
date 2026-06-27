@@ -1,0 +1,6 @@
+{
+    "host": "localhost",
+    "port": 25565,
+    "username": "afkonline",
+    "prefix": "!"
+}

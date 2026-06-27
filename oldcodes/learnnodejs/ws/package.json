@@ -1,0 +1,15 @@
+{
+  "name": "rdpgamesnode",
+  "version": "0.0.1",
+  "description": "",
+  "main": "bytes\\index.js",
+  "scripts": {
+    "start": "node .",
+    "client": "node bytes\\client.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^7.4.4"
+  }
+}

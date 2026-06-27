@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="testgui:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/testgui_jar</output-path>
+    <root id="archive" name="testgui_jar.jar">
+      <element id="module-output" name="testgui" />
+    </root>
+  </artifact>
+</component>

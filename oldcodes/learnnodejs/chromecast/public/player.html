@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administración</title>
+    <%- include('./head.html') -%>
+</head>
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        setInterval( async () => {
+            time(document.getElementById('time').value);
+        }, 250);
+
+        var socket = io();
+
+        async function pause() {
+            socket.emit('pause');
+        };
+        async function resume() {
+            socket.emit('resume');
+        }
+        async function play() {
+            socket.emit('play');
+        };
+        async function stop() {
+            socket.emit('stop');
+        };
+        async function skip(data) {
+            socket.emit('skip', data); // 22:22 como String
+        };
+
+        async function time(SECONDS) {
+            var s = parseInt(SECONDS);
+            if(!s) {
+                s = 0;
+            }
+            var m = new Date(s * 1000).toISOString().substr(11, 8);
+            
+            document.getElementById('fin').innerText = `${m}`;
+        };
+
+    </script>
+
+    <div>
+        <h3 style="cursor: pointer;" onclick="window.location = '/'" >Inicio</h3>
+    </div>
+    <br>
+    <div style="padding: 20px;">
+        <button class="boton2" onclick="pause();">Pausar</button>
+        <button class="boton2" onclick="resume();">Resumir</button>
+        <p>Pausa o resume el video que se esta reproduciendo</p>
+    </div>
+    <div style="padding: 20px;">
+        <div>
+            <input class="input1" type="number" id="time" autocomplete="off" placeholder="Ponga un tiempo">
+            <p> = <p id="fin">00:00:00</p></p>
+        </div>
+        <button class="boton2" onclick="skip(document.getElementById('time').value);">Saltar</button>
+    </div>
+    <br>
+    <div style="padding: 20px;">
+        <button class="boton1" onclick="play();">Iniciar</button>
+        <p>Inicia la cancion cargada</p>
+    </div>
+
+    <div style="padding: 20px;">
+        <button class="boton1" onclick="stop();">Parar</button>
+        <p>Para la transmision de video / audio</p>
+    </div>
+
+</body>
+</html>

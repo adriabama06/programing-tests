@@ -1,0 +1,23 @@
+"r" read -> Only read -> text mode
+"w" write -> Write and keep open -> text mode
+"a" append -> If not exist create and do "w" -> text mode
+
+"r+" same as "r" -> Allow write in any point of file -> text mode
+"w+" same as "w" -> Allow read and wirte -> text mode
+"a+" same as "a" -> Allow read the file -> text mode
+
+"rt" same as "r" -> t is -> text mode
+"wt" same as "w" -> t is -> text mode
+"at" same as "a" -> t is -> text mode
+
+"rt+" same as "r+"
+"wt+" same as "w+"
+"at+" same as "a+"
+
+"rb" same as "r" -> byte mode
+"wb" same as "w" -> byte mode
+"ab" same as "a" -> byte mode
+
+"rb+" same as "r+" -> byte mode
+"wb+" same as "w+" -> byte mode
+"ab+" same as "a+" -> byte mode

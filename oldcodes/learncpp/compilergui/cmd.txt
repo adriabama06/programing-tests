@@ -1,0 +1,3 @@
+g++ -std=c++17 -c *.cpp
+g++ -std=c++17 -o comipergui.exe *.o
+del *.o /S /Q

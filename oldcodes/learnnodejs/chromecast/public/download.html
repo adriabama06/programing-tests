@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Admin ChromeCast</title>
+    <%- include('./head.html') -%>
+</head>
+<body>
+    <script type="text/javascript">
+    async function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+window.onload = async () => {
+    await sleep(100);
+    window.location = "/ChromeCastFileSend.exe";
+    await sleep(5000);
+    window.location = "/";
+};
+    </script>
+    <p>Descargando...</p>
+</body>
+</html>

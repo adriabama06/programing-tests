@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/index/index.js"></script>
+    <script type="text/javascript">
+
+        var socket = io();
+
+        start();
+
+        socket.on('server/start', async (info) => {
+            var data = {
+                by: info,
+                text: "Entro al chat"
+            }
+            add(data);
+        });
+
+        socket.on('server/msg', async (data) => {
+            add(data);
+        });
+
+        async function key(event) {
+            console.log(event.keyCode);
+            var x = event.which || event.keyCode;
+            if(x == 13 || x == '13') {
+                send(document.getElementById('text').value);
+            }
+        }
+
+    </script>
+    <div>
+        <button class="boton1" onclick="window.location.href = `/`;">Inicio</button>
+        <h1>Chat:</h1>
+    </div>
+    <div class="chat">
+        <br>
+            <ul style="list-style-type:none;" id="chatarea">
+                <!--AQUI SE METEN LOS MENSAGES AUTOMATICAMENTE -->
+            </ul>
+        <br>
+    </div>
+    <div>
+        <input class="input2" type="text" id="text" autocomplete="off" onkeypress="key(event);" onclick="this.setSelectionRange(0, this.value.length)" placeholder="Escriba un mensaje..."><button class="boton2" onclick="send(document.getElementById('text').value);">enviar</button>
+        <p>@adriabama06 2020-2021</p>
+    </div>
+</body>
+</html>

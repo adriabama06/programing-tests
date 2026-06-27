@@ -1,0 +1,17 @@
+{
+  "name": "streamingobs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-media-server": "^2.2.4",
+    "rtmp-server": "^0.2.0"
+  }
+}

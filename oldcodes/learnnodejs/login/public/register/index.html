@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/register/index.js"></script>
+    <script type="text/javascript">
+
+        var socket = io();
+
+    </script>
+    <div>
+        <h1>Registrate:</h1>
+        <input id="mail" type="email" placeholder="Ponga su correo" >
+        <input id="pass" type="password" placeholder="Ponga una contraseña" >
+        <input id="nick" type="text" placeholder="Ponga un nick" >
+        <button onclick="reg();">Registar</button>
+    </div>
+</body>
+</html>

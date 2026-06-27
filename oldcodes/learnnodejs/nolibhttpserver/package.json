@@ -1,0 +1,11 @@
+{
+  "name": "nolibhttpserver",
+  "version": "0.0.1",
+  "description": "Basic http server using only net",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "tsc && node ."
+  },
+  "author": "adriabama06",
+  "license": "ISC"
+}
